@@ -11,12 +11,12 @@ function App() {
   const [showApp, setShowApp] = useState(false);
 
   useEffect(() => {
-  const timer = setTimeout(() => {
-    setShowApp(true);
-  }, 2500);
+    const timer = setTimeout(() => {
+      setShowApp(true);
+    }, 2500);
 
-  return () => clearTimeout(timer);
-}, []);
+    return () => clearTimeout(timer);
+  }, []);
 
   const [participants, setParticipants] = useState([]);
 
@@ -81,9 +81,9 @@ function App() {
           } else {
             setError("Please enter participant name");
 
-              setTimeout(() => {
-                setError("");
-              }, 3000);
+            setTimeout(() => {
+              setError("");
+            }, 3000);
           }
         }
 
@@ -124,33 +124,33 @@ function App() {
 
   // INTRO SCREEN
   if (!showApp) {
-  return (
-    <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-white">
+    return (
+      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-white">
 
-      <Trophy
-        size={90}
-        className="text-yellow-400 mb-6 animate-bounce"
-      />
+        <Trophy
+          size={90}
+          className="text-yellow-400 mb-6 animate-bounce"
+        />
 
-      <h1 className="text-6xl font-bold tracking-wide">
-        JudgePad
-      </h1>
+        <h1 className="text-6xl font-bold tracking-wide">
+          JudgePad
+        </h1>
 
-      <p className="text-gray-400 mt-3 text-lg">
-        Live Judging Platform
-      </p>
+        <p className="text-gray-400 mt-3 text-lg">
+          Live Judging Platform
+        </p>
 
-    </div>
-  );
-}
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0f172a] text-white">
       {error && (
-  <div className="fixed top-6 right-6 bg-red-500 text-white px-6 py-4 rounded-2xl shadow-2xl z-50 animate-pulse">
-    {error}
-  </div>
-)}
+        <div className="fixed top-6 right-6 bg-red-500 text-white px-6 py-4 rounded-2xl shadow-2xl z-50 animate-pulse">
+          {error}
+        </div>
+      )}
       {/* HEADER */}
       <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-10 py-12 shadow-lg">
         <div className="max-w-5xl mx-auto">
@@ -297,39 +297,39 @@ function App() {
               (participant, index) => {
                 let rank = 1;
 
-              if (index > 0) {
-                const currentAvg = getAverage(
-                  participant.scores
-                );
+                if (index > 0) {
+                  const currentAvg = getAverage(
+                    participant.scores
+                  );
 
-                const previousAvg = getAverage(
-                  rankedParticipants[index - 1].scores
-                );
+                  const previousAvg = getAverage(
+                    rankedParticipants[index - 1].scores
+                  );
 
-                if (currentAvg === previousAvg) {
-                  rank =
-                    rankedParticipants[index - 1].rank;
-                } else {
-                  rank =
-                    rankedParticipants[index - 1].rank + 1;
+                  if (currentAvg === previousAvg) {
+                    rank =
+                      rankedParticipants[index - 1].rank;
+                  } else {
+                    rank =
+                      rankedParticipants[index - 1].rank + 1;
+                  }
                 }
-              }
 
-              // Store rank
-              participant.rank = rank;
+                // Store rank
+                participant.rank = rank;
 
                 const isTie =
                   index > 0 &&
                   getAverage(
                     participant.scores
                   ) ===
-                    getAverage(
-                      rankedParticipants[
-                        index - 1
-                      ].scores
-                    );
+                  getAverage(
+                    rankedParticipants[
+                      index - 1
+                    ].scores
+                  );
 
-                
+
 
                 let icon;
 
