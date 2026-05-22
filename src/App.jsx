@@ -41,7 +41,7 @@ function App() {
     setNewName("");
   };
 
-  // Delete participant
+ // Delete participant
   const deleteParticipant = (id) => {
     setParticipants(
       participants.filter(
